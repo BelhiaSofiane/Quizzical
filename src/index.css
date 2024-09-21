@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* ==============first page==============  */
+.first-page-container {
+  display: flex;
+  height: 100vh;
+  line-height: 10vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.first-page-container h1 {
+  color: #293264;
+  font-family: Karla;
+  font-size: 31.25px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.first-page-container p {
+  color: #293264;
+  font-family: Inter;
+}
+
+.first-page-container button {
+  color: #f5f7fb;
+  font-family: Inter;
+  padding: 10px 15px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 15px;
+  background: #4d5b9e;
+  cursor: pointer;
+}
+
+/* ====== Loading Screen ====== */
+.loading-screen {
+  font-family: Karla;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 8px solid rgba(0, 0, 0, 0.1);
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+p {
+  margin-top: 16px;
+  font-size: 18px;
+  color: #333;
+}
+/* ====== Loading Screen ====== */
+
