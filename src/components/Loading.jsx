@@ -1,4 +1,4 @@
-import '../index.css'; // This is where the spinner styles will go
+import "../index.css";
 
 function Loading() {
   return (

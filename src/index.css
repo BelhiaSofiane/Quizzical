@@ -62,8 +62,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 p {
@@ -72,4 +76,20 @@ p {
   color: #333;
 }
 /* ====== Loading Screen ====== */
+
+.selected {
+  color: rgb(37, 9, 196);
+}
+
+.not-selected  {
+  background-color: #3498db;
+}
+
+.correct {
+  background-color: green;
+}
+
+.incorrect {
+  background-color: red;
+}
 
