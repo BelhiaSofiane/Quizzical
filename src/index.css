@@ -1,26 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+/* General Reset and Typography */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Karla";
 }
-/* ==============first page==============  */
+
+/* ============== First Page Styles ============== */
 .first-page-container {
   display: flex;
   height: 100vh;
-  line-height: 10vh;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  line-height: 10vh;
 }
 
 .first-page-container h1 {
   color: #293264;
   font-size: 50px;
-  font-style: normal;
   font-weight: 700;
 }
 
@@ -30,9 +31,10 @@
   font-size: 28px;
 }
 
+/* ============== First Page Styles ============== */
+/* Primary Button Styles */
 .primary-btn {
   color: #f5f7fb;
-  font-family: Karla;
   padding: 2rem;
   border: none;
   font-size: 16px;
@@ -42,9 +44,8 @@
   margin: 2rem auto;
 }
 
-/* ====== Loading Screen ====== */
+/* ====== Loading Screen Styles ====== */
 .loading-screen {
-  font-family: Karla;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -70,13 +71,10 @@
     transform: rotate(360deg);
   }
 }
-/* ====== Loading Screen ====== */
-p {
-  margin-top: 16px;
-  font-size: 18px;
-  color: #333;
-}
-/* quizz-container */
+/* ====== Loading Screen Styles ====== */
+
+
+/* ============== Quiz Container Styles ============== */
 .quizz-container {
   margin-top: 50px;
   height: 100vh;
@@ -86,11 +84,13 @@ p {
 
 .question-container {
   border-bottom: solid 1px #dbdef0;
-  margin: 0 90px 0 90px;
+  margin: 0 90px;
   display: flex;
   flex-direction: column;
   color: #293264;
 }
+/* ============== Quiz Container Styles ============== */
+/* Button Styles for Quiz */
 button {
   color: #293264;
   border-radius: 18px;
@@ -100,12 +100,12 @@ button {
   margin-top: 15px;
   font-size: 24px;
 }
+
+/* Answer Button Styles */
 .selected {
-  color: #293264;
   background-color: #d6dbf5;
-  border-radius: 10px;
-  border: none;
 }
+
 .not-selected {
   border: 1px solid #4d5b9e;
 }
@@ -117,6 +117,7 @@ button {
 .incorrect {
   background-color: #f8bcbc;
 }
+/* Answer Button Styles */
 
 .df {
   display: flex;
@@ -128,6 +129,12 @@ span {
   font-size: 30px;
   font-weight: 600;
   color: #4d5b9e;
+}
+
+p {
+  margin-top: 16px;
+  font-size: 18px;
+  color: #333;
 }
 
 .reset-container {
