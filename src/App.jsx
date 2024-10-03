@@ -28,24 +28,29 @@ function App() {
       if (response.ok) {
         const data = await response.json(); // Parse API response
         let q = [] // Array to store processed questions 
+        
         // Loop through each question in the API response
         data.results.forEach(question => {
           q.push({
-            id: nanoid(), 
-            answers: shuffleArr([...question.incorrect_answers ,question.correct_answer]), // Shuffle answers
-            correct: question.correct_answer, 
-            question: question.question, 
+            id: nanoid(),
+            answers: shuffleArr([...question.incorrect_answers, question.correct_answer]), // Shuffle answers
+            correct: question.correct_answer,
+            question: question.question,
             selectedAnswer: null,
-            checked:false, 
+            checked: false,
           });
-          setApiData(q); // Set the processed questions into state
         });
+        setApiData(q); // Set the processed questions into state
         setStarted(true); // Mark quiz as started to load questions page
-      } 
+        return true; // Return success
+      } else {
+        throw new Error("Failed to fetch data from the API.");
+      }
     } catch (e) {
-      // If error occurs, log it and set error state
+      // If an error occurs, log it and set error state
       console.log("error found", e);
-      setError('Error, Start the quiz again');
+      setError('Error, Repalying too fast CHIIIILLL');
+      return false; // Return failure
     } finally {
       setLoading(false); // Set loading to false once API call completes
     }
@@ -108,12 +113,18 @@ function handleCheckAnswers() {
 }
 
 
-  function handleResetGame() {
-    setCount(0)
-    setApiData([])
-    callApi()
-    setFinishedGame(false)
+async function handleResetGame() {
+  setCount(0);
+  setApiData([]); 
+  const success = await callApi(); // Call API and check if it succeeds
+  
+  if (!success) {
+    // If the API fails, don't reset the finishedGame state, to avoid empty page
+    setFinishedGame(false);
+  } else {
+    setFinishedGame(false);
   }
+}
 
   function handleStartMenu(){
     setStarted(false)
@@ -124,19 +135,20 @@ function handleCheckAnswers() {
 
   // Conditionally render different pages based on state (loading, started, or error)
   let pages = loading 
-    ? <Loading /> // Show loading screen if loading is true
+  ? <Loading /> // Show loading screen if loading is true
+  : error // If there is an error, display error message
+    ? <Start loadingError={error} onStart={handleStart}/> 
     : started 
       ? (<Questions 
-        qna={apiData}
-        handleClickAnswer={handleClickAnswer}
-        handleCheckAnswers={handleCheckAnswers}
-        handleResetGame={handleResetGame}
-        handleStartMenu={handleStartMenu}
-        count={count}
-        finishedGame={finishedGame}
+          qna={apiData}
+          handleClickAnswer={handleClickAnswer}
+          handleCheckAnswers={handleCheckAnswers}
+          handleResetGame={handleResetGame}
+          handleStartMenu={handleStartMenu}
+          count={count}
+          finishedGame={finishedGame}
         />)
-      // ? (<Questions handleClickAnswer={handleClickAnswer} questions={questions}/>) // Show questions if quiz has started
-      : (<Start loadingError={error} onStart={handleStart}/>); // Show start page or error if quiz hasn't started yet
+      : (<Start onStart={handleStart}/>);
 
   // Render the selected page
   return <>{pages}</>;

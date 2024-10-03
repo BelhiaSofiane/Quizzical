@@ -33,7 +33,7 @@ const Questions = ({ qna = [], handleClickAnswer, count, handleCheckAnswers, han
   ));
 
   const resetGameElement = 
-  <div className="reset-container">
+  <div className="reset-container df">
     <button className="primary-btn" onClick={() => handleStartMenu()}>Start Menu</button>
     <button className="primary-btn" onClick={() => handleResetGame()}>Replay the Game</button>
   </div>
@@ -45,7 +45,7 @@ const Questions = ({ qna = [], handleClickAnswer, count, handleCheckAnswers, han
         {finishedGame 
           ?  resetGameElement
           :<button className="primary-btn" onClick={() => handleCheckAnswers()}>Check Answers</button>}
-        <div onClick={() => console.log(count)}>You Have Scored {count}/5</div>
+        {count = 0 ? <div></div>: <span className="df" onClick={() => console.log(count)}>You Have Scored {count}/5</span>}
       </div>
     </>
   );
