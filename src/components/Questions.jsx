@@ -1,6 +1,6 @@
 import React from "react";
 
-const Questions = ({ qna = [], handleClickAnswer, count, handleCheckAnswers }) => {
+const Questions = ({ qna = [], handleClickAnswer, count, handleCheckAnswers, handleStartMenu, handleResetGame, finishedGame }) => {
   const questionsElement = qna.map((question, index) => (
     <div key={index} className="question-container">
       {/* Decode and display the question */}
@@ -21,7 +21,7 @@ const Questions = ({ qna = [], handleClickAnswer, count, handleCheckAnswers }) =
                     :''
                 : question.selectedAnswer === answer 
                   ?'selected'
-                  :'not-selected'} `
+                  :'not-selected'}`
             }
           >
             {atob(answer)}
@@ -32,11 +32,20 @@ const Questions = ({ qna = [], handleClickAnswer, count, handleCheckAnswers }) =
     </div>
   ));
 
+  const resetGameElement = 
+  <div className="reset-container">
+    <button className="primary-btn" onClick={() => handleStartMenu()}>Start Menu</button>
+    <button className="primary-btn" onClick={() => handleResetGame()}>Replay the Game</button>
+  </div>
+
   return (
     <>
       <div className="quizz-container">
         {questionsElement}
-        <button className="primary-btn" onClick={() => handleCheckAnswers()}>Check Answers</button>
+        {finishedGame 
+          ?  resetGameElement
+          :<button className="primary-btn" onClick={() => handleCheckAnswers()}>Check Answers</button>}
+        <div onClick={() => console.log(count)}>You Have Scored {count}/5</div>
       </div>
     </>
   );

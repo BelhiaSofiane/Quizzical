@@ -4,6 +4,7 @@ import "./index.css"; // Import CSS styles
 import { useState, useEffect } from "react"; // Import useState and useEffect hooks
 import { nanoid } from "nanoid"; // Import nanoid for unique IDs
 import Questions from "./components/Questions";
+import { selectClasses } from "@mui/material";
 
 function App() {
   // State management
@@ -12,6 +13,7 @@ function App() {
   const [error, setError] = useState(null); // Tracks error state
   const [apiData, setApiData] = useState([]); // Stores questions fetched from API
   const [count, setCount] = useState(0)
+  const [finishedGame ,setFinishedGame] = useState(false)
   
   // Function to fetch data from the API
   const callApi = async () => {
@@ -63,23 +65,61 @@ function App() {
     callApi(); // Call API when quiz is started
   }
 
-  function handleClickAnswer(questionId, answer) {
-    setApiData(prevData => 
-      prevData.map(question =>
-        question.id === questionId ?
-          {...question, selectedAnswer: answer}:
-          question
-      )
-    )
+function handleClickAnswer(questionId, answer) {
+  setApiData(prevData =>
+    prevData.map(question => {
+      if (question.id === questionId) {
+        // Check if the selected answer is correct and update count accordingly
+        return { ...question, selectedAnswer: answer };
+      }
+      return question;
+    })
+  );
+}
+
+
+
+
+
+
+function handleCheckAnswers() {
+  setApiData(prevQuestions => {
+    let correct = 0;
+    
+    const updatedQuestions = prevQuestions.map(question => {
+      // Check if the selected answer is correct
+      if (question.correct === question.selectedAnswer) {
+        correct += 1; // Increment correct count if answer is correct
+      }
+      
+      // Set `checked` to true for all questions
+      return {
+        ...question,
+        checked: true, 
+      };
+    });
+
+    // Update the correct answer count after mapping through the questions
+    setCount(correct);
+
+    return updatedQuestions; // Return the updated questions
+  });
+   setFinishedGame(true)
+}
+
+
+  function handleResetGame() {
+    setCount(0)
+    setApiData([])
+    callApi()
+    setFinishedGame(false)
   }
 
-  function handleCheckAnswers() {
-    setApiData(prevQuestions =>
-      prevQuestions.map(question => ({
-        ...question,
-        checked: true, // Set isChecked to true for all questions
-      }))
-    );
+  function handleStartMenu(){
+    setStarted(false)
+    setCount(0)
+    setApiData([])
+    setFinishedGame(false)
   }
 
   // Conditionally render different pages based on state (loading, started, or error)
@@ -90,7 +130,10 @@ function App() {
         qna={apiData}
         handleClickAnswer={handleClickAnswer}
         handleCheckAnswers={handleCheckAnswers}
+        handleResetGame={handleResetGame}
+        handleStartMenu={handleStartMenu}
         count={count}
+        finishedGame={finishedGame}
         />)
       // ? (<Questions handleClickAnswer={handleClickAnswer} questions={questions}/>) // Show questions if quiz has started
       : (<Start loadingError={error} onStart={handleStart}/>); // Show start page or error if quiz hasn't started yet

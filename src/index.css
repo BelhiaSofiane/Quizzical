@@ -19,7 +19,7 @@
 
 .first-page-container h1 {
   color: #293264;
-  font-size: 31.25px;
+  font-size: 50px;
   font-style: normal;
   font-weight: 700;
 }
@@ -27,18 +27,19 @@
 .first-page-container p {
   color: #293264;
   font-family: Inter;
+  font-size: 28px;
 }
 
-.first-page-container button {
+.primary-btn {
   color: #f5f7fb;
-  font-family: Inter;
-  padding: 10px 15px;
+  font-family: Karla;
+  padding: 2rem;
   border: none;
   font-size: 16px;
   font-weight: 500;
-  border-radius: 15px;
   background: #4d5b9e;
   cursor: pointer;
+  margin: 2rem auto;
 }
 
 /* ====== Loading Screen ====== */
@@ -115,10 +116,11 @@ button {
 .incorrect {
   background-color: #f8bcbc;
 }
-.primary-btn {
-  color: #f5f7fb;
-  background-color: #4d5b9e;
-  padding: 2rem;
-  width: 20rem;
-  margin: 2rem auto;
+
+.reset-container {
+  display: flex;
+  align-content: space-around;
+  justify-content: space-around;
+
 }
+

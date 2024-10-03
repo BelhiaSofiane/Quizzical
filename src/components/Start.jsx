@@ -1,10 +1,11 @@
 import React from "react"; // Import React
 
+
 const Start = (props) => {
   return (
     <>
       <div className="first-page-container"> {/* Container for the start page */}
-        <h1>Quizzical</h1> {/* Title of the quiz */}
+        <h1 className="title">Quizzical</h1> {/* Title of the quiz */}
         {/* Display error message if loadingError prop is passed */}
         <p style={{
           color: 'red', // Error message styled in red
