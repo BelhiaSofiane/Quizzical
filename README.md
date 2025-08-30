@@ -4,7 +4,7 @@
 
 ## 🖥️ Live Demo
 
-👉 [Play the Quiz](https://quizzical-hut.netlify.app/)
+👉 [Start Budgeting](https://quizzical-hut.netlify.app/)
 
 ## 🚀 Features
 
